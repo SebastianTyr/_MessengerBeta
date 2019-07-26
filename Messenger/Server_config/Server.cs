@@ -15,7 +15,8 @@ namespace Server_config
             try
             {
                 //Local IP address - the same on the client side
-                IPAddress ip = IPAddress.Parse("192.168.0.101");
+                Console.Write("Podaj swoje IP: ");
+                IPAddress ip = IPAddress.Parse(Console.ReadLine());
 
                 //Initialize the listener
                 TcpListener listener = new TcpListener(ip, 8001);
@@ -29,7 +30,7 @@ namespace Server_config
                 Socket socket = listener.AcceptSocket();
                 Console.WriteLine($"Połączenie zaakceptowane z {socket.RemoteEndPoint}");
 
-                byte[] b = new byte[100];
+                byte[] b = new byte[256];
                 int receive = socket.Receive(b);
                 Console.WriteLine("Odbieranie...");
 

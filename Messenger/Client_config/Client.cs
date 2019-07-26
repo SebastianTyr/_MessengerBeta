@@ -16,8 +16,10 @@ namespace Client_config
             try
             {
                 //local client IP
+                Console.Write("Podaj swoje IP: ");
+                IPAddress ip = IPAddress.Parse(Console.ReadLine());
                 TcpClient client = new TcpClient();
-                client.Connect("192.168.0.101", 8001);
+                client.Connect(ip, 8001);
 
                 Console.WriteLine("Połączono");
                 Console.Write("Wpisz wiadomość: ");
@@ -31,8 +33,8 @@ namespace Client_config
 
                 stream.Write(b, 0, b.Length);
 
-                byte[] bb = new byte[100];
-                int k = stream.Read(bb, 0, 100);
+                byte[] bb = new byte[256];
+                int k = stream.Read(bb, 0, 256);
 
                 for (int i = 0; i < k; i++)
                     Console.Write(Convert.ToChar(bb[i]));
